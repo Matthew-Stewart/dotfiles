@@ -1,0 +1,3 @@
+try
+	tell application "Finder" to tell window 1 to set target to container of target
+end try

@@ -1,0 +1,9 @@
+try
+	tell application "Finder" to set the this_folder ¬
+		to (folder of the front window) as alias
+	set thefilename to "temp.txt"
+	set thefullpath to POSIX path of this_folder & thefilename
+	do shell script "touch \"" & thefullpath & "\""
+on error -- no open finder windows
+	tell application "Finder" to make new Finder window
+end try

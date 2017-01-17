@@ -1,0 +1,10 @@
+*~
+*.swp
+*.exe
+*.class
+*.pyc
+npm_debug.log
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini

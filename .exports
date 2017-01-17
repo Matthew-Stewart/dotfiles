@@ -1,0 +1,14 @@
+export CLICOLOR=1
+export LSCOLORS=gxfxcxdxbxegedabagacGx
+export GREP_OPTIONS='--color=auto'
+
+export LAST_COMMAND="$(fc -e : -1)"
+export PROMPT_COMMAND='echo -ne "\033]0;${USER} ${LAST_COMMAND}\007"'
+#export PROMPT_COMMAND='echo -ne "\033]0;${PS1}\007"'
+
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+
+export PS1="\[\e[0;91m\]\u\[\e[m\] \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \[\e[0;92m\]"
+# export PS1='\[\e[0;91m\]\u\[\e[m\] \[\e[1;94m\]\w\[\e[m\] \[\e[1;96m\]\$\[\e[m\] \[\e[0;92m\]'
+# export PS1="\u@\h \W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "

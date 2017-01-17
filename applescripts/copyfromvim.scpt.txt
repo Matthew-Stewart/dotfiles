@@ -1,0 +1,12 @@
+tell application "Terminal"
+	set frontname to get name of window 1
+	if frontname contains "Vim" then
+		tell application "System Events"
+			keystroke "c" using option down
+		end tell
+	else
+		tell application "System Events"
+			keystroke "u" using control down
+		end tell
+	end if
+end tell
