@@ -2,6 +2,7 @@ set nocompatible
 filetype plugin indent on
 
 " set the runtime path to include Vundle and initialize
+" run :PluginInstall for first time setup
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " not sure how many of these I actually use
@@ -11,7 +12,7 @@ Bundle 'mbadran/headlights'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
-Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/vimproc.vim'  " installed manually
 Plugin 'Shougo/unite.vim'
 Plugin 'm2mdas/phpcomplete-extended'
 Bundle 'kien/rainbow_parentheses.vim'

@@ -22,12 +22,16 @@ alias 357="cd $D/CPE\ 357\ -\ c/"
 alias 365="cd $D/CPE\ 365/"
 alias 445="cd $D/CSC\ 445/"
 alias 471="cd $D/CPE\ 471/"
+alias 476="cd $D/CPE\ 476/"
 
 alias cd..="cd .."
 alias cl="clear"
 
 alias bp="vim ~/.bash_profile"
 alias v="vim ~/.vimrc"
+alias a="vim ~/.aliases"
+alias e="vim ~/.exports"
+alias extra="vim ~/.extra"
 alias h="sudo vim /etc/hosts; dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
 alias sps="python -m SimpleHTTPServer"
@@ -90,7 +94,7 @@ alias week='date +%V'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias update='brew update; brew upgrade; brew cleanup; sudo npm install npm -g; sudo npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -199,8 +203,6 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # github.com/webpro/dotfiles/blob/master/system/.alias.macos
 
-# Start screen saver
-alias afk="/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
 # Log off
 alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
