@@ -1,61 +1,62 @@
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+   required = true
+   clean = git media clean %f
+   smudge = git media smudge %f
 [user]
-	name = Matthew Stewart
-	email = mstewa09@calpoly.edu
+   name = Matthew Stewart
+   email = mstewa09@calpoly.edu
 [core]
-	excludesfile = /Users/Stewart/.gitignore_global
+   excludesfile = /Users/Stewart/.gitignore_global
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+   path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+   trustExitCode = true
 [alias]
-	undo-commit = reset --soft HEAD^
-	lag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' -n 25
+   undo-commit = reset --soft HEAD^
+   lag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' -n 25
+   c = clean -xfd
+   rh = "!git reset --hard HEAD; git clean -xfd"
 
-	# github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-	s = status -s
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-	p = !"git pull; git submodule foreach git pull origin master"
-	c = clone --recursive
-	ca = !git add -A && git commit -av
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
-	amend = commit --amend --reuse-message=HEAD
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-	fb = "!f() { git branch -a --contains $1; }; f"
-	ft = "!f() { git describe --always --contains $1; }; f"
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-	contributors = shortlog --summary --numbered
+   # github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
+   l = log --pretty=oneline -n 20 --graph --abbrev-commit
+   s = status -s
+   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+   di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+   p = !"git pull; git submodule foreach git pull origin master"
+   ca = !git add -A && git commit -av
+   go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+   tags = tag -l
+   branches = branch -a
+   remotes = remote -v
+   amend = commit --amend --reuse-message=HEAD
+   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+   reb = "!r() { git rebase -i HEAD~$1; }; r"
+   retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+   fb = "!f() { git branch -a --contains $1; }; f"
+   ft = "!f() { git describe --always --contains $1; }; f"
+   fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+   fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+   dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+   contributors = shortlog --summary --numbered
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
+   clean = git hawser clean %f
+   smudge = git hawser smudge %f
+   required = true
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
+   clean = git lfs clean %f
+   smudge = git lfs smudge %f
+   required = true
 [url "git@github.com:"]
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
+   insteadOf = "gh:"
+   pushInsteadOf = "github:"
+   pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
-	insteadOf = "github:"
+   insteadOf = "github:"
 [url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
+   insteadOf = "gst:"
+   pushInsteadOf = "gist:"
+   pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
-	insteadOf = "gist:"
+   insteadOf = "gist:"
