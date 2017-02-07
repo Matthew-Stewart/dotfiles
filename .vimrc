@@ -16,6 +16,7 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'm2mdas/phpcomplete-extended'
 Bundle 'kien/rainbow_parentheses.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()            " required
 
@@ -54,6 +55,7 @@ set shiftwidth=3
 set smarttab
 set pastetoggle=<F2>
 set ignorecase
+set smartcase
 set history=1000
 set mouse=i
 set mouse+=a
@@ -180,7 +182,7 @@ if exists("&relativenumber")
    au BufReadPost * set relativenumber
 endif
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=2
 
 " Automatic commands
 if has("autocmd")
@@ -191,3 +193,35 @@ if has("autocmd")
    " Treat .md files as Markdown
    autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+
+" github.com/josepharhar/dotfiles/blob/master/vimrc
+
+" wildmenu
+set wildchar=<Tab>
+"set wildmode=full " :help wildmode
+"set wildmode=longest:full
+set wildmode=longest:full,full
+set wildignore+=*.class,*.swp,*/build/*,*/target/*,*.o,*/node_modules/*,*/deps/*
+
+" alt keybindings to switch between windows
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
+nnoremap <silent> <C-m> :wincmd q<CR>
+" ycm
+nnoremap <C-i> :YcmCompleter GoTo<CR>
+
+" Standard vim options
+set autoindent            " always set autoindenting on
+set cindent               " c code indenting
+set diffopt=filler,iwhite " keep files synced and ignore whitespace
+set guioptions-=m         " Remove menu from the gui
+set guioptions-=T         " Remove toolbar
+set history=50            " keep 50 lines of command line history
+set linebreak             " This displays long lines as wrapped at word boundries
+set ruler                 " the ruler on the bottom is useful
+set showcmd               " Show (partial) command in status line.
+set showmatch             " Show matching brackets.
+set virtualedit=block     " let blocks be in virutal edit mode
