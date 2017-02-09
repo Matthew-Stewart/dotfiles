@@ -45,6 +45,8 @@ alias brewski="brew update && brew upgrade && brew cleanup; brew doctor"
 
 alias rmpyc="find . -name "*.pyc" -exec rm -rf {} \;"
 
+alias updatepip="sudo python -m pip install -U pip && pip list --outdated | cut -d' ' -f1 | sudo xargs pip install --upgrade"
+alias updatepip3="sudo pip3 install pip && pip3 list --outdated | cut -d' ' -f1 | sudo xargs pip3 install --upgrade"
 
 
 # github.com/mathiasbynens/dotfiles/blob/master/.aliases
@@ -96,7 +98,7 @@ alias week='date +%V'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='brew update; brew upgrade; brew cleanup; sudo npm install npm -g; sudo npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias update='brew update; brew upgrade; brew cleanup; sudo npm install npm -g; sudo npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup; updatepip; updatepip3'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
