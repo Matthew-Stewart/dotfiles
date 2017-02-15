@@ -131,7 +131,7 @@ vnoremap <D-C> "+y
 nnoremap r "_d
 vnoremap r "_d
 
-map <F3> mzgg=G<CR>:retab<CR>`z<CR>
+map <F3> mzgg=G<bar>:retab<CR>`z
 
 "https://www.youtube.com/watch?v=xew7CMkL7jY
 ab shb #!/usr/bin/env bash
