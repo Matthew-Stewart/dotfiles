@@ -102,10 +102,19 @@ set noerrorbells visualbell t_vb=
 " none of these should be word dividers, so make them not be
 set iskeyword+=_,$,@,%,#,-
 
+" http://stackoverflow.com/questions/19936145
+fun! StripTrailingWhiteSpace()
+   " don't strip on these filetypes
+   if &ft =~ 'markdown'
+      return
+   endif
+   %s/\s\+$//e
+endfun
+
 augroup vimrc
    " Automatically delete trailing DOS-returns and whitespace on file open and
    " write.
-   autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+   autocmd BufRead,BufWritePre,FileWritePre * silent! :call StripTrailingWhiteSpace()
 augroup END
 
 " Highlight Class and Function names
