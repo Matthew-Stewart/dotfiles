@@ -114,7 +114,7 @@ endfun
 augroup vimrc
    " Automatically delete trailing DOS-returns and whitespace on file open and
    " write.
-   autocmd BufRead,BufWritePre,FileWritePre * silent! :call StripTrailingWhiteSpace()
+   autocmd BufRead,BufWritePre,FileWritePre * silent :call StripTrailingWhiteSpace()
 augroup END
 
 " Highlight Class and Function names
@@ -137,9 +137,19 @@ vmap <D-v> c<ESC>"+p
 imap <D-v> <ESC>"+pa
 vnoremap <D-C> "+y
 
-nnoremap r "_d
-vnoremap r "_d
+" undo all changes made to a file since opening it
+map <silent> U :silent :u1<bar>u<CR>
 
+" "_d is used to delete something to the blackhole register
+" (in my case, this simply means don't copy it to the clipboard)
+" nnoremap r "_d
+" vnoremap r "_d
+
+" for moving between buffers
+nnoremap > :bn<CR>
+nnoremap < :bp<CR>
+
+" retab entire file
 map <F3> mzgg=G<bar>:retab<CR>`z
 
 "https://www.youtube.com/watch?v=xew7CMkL7jY
@@ -152,6 +162,9 @@ python del powerline_setup
 set rtp+=/Users/Stewart/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
 " source /Users/Stewart/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
+set showtabline=2
+" allows switching buffers without writing the current buffer
+set hidden
 
 " github.com/mathiasbynens/dotfiles/blob/master/.vimrc
 
@@ -190,7 +203,7 @@ if exists("&relativenumber")
    set relativenumber
    au BufReadPost * set relativenumber
 endif
-" Start scrolling three lines before the horizontal window border
+" Start scrolling two lines before the horizontal window border
 set scrolloff=2
 
 " Automatic commands
