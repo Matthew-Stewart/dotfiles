@@ -1,5 +1,5 @@
 set nocompatible
-filetype plugin indent on
+filetype off
 
 " set the runtime path to include Vundle and initialize
 " run :PluginInstall for first time setup
@@ -17,6 +17,7 @@ Plugin 'Shougo/unite.vim'
 Plugin 'm2mdas/phpcomplete-extended'
 Bundle 'kien/rainbow_parentheses.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()            " required
 
@@ -47,7 +48,7 @@ set term=xterm-256color
 set termencoding=utf-8
 
 syntax enable
-syntax on
+filetype plugin indent on
 set tabstop=3
 set softtabstop=0
 set expandtab
@@ -56,7 +57,7 @@ set smarttab
 set pastetoggle=<F2>
 set ignorecase
 set smartcase
-set history=1000
+set history=100
 set mouse=i
 set mouse+=a
 set hlsearch
@@ -140,6 +141,9 @@ vnoremap <D-C> "+y
 " undo all changes made to a file since opening it
 map <silent> U :silent :u1<bar>u<CR>
 
+" copy in visual mode keeps your cursor in the same place
+vnoremap y ygv<ESC>
+
 " "_d is used to delete something to the blackhole register
 " (in my case, this simply means don't copy it to the clipboard)
 " nnoremap r "_d
@@ -160,7 +164,7 @@ python powerline_setup()
 python del powerline_setup
 
 set rtp+=/Users/Stewart/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
-" source /Users/Stewart/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+
 set laststatus=2
 set showtabline=2
 " allows switching buffers without writing the current buffer
@@ -194,8 +198,6 @@ set list
 set incsearch
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
-" Show the cursor position
-set ruler
 " Don’t show the intro message when starting Vim
 set shortmess=atI
 " Use relative line numbers
@@ -208,8 +210,6 @@ set scrolloff=2
 
 " Automatic commands
 if has("autocmd")
-   " Enable file type detection
-   filetype on
    " Treat .json files as .js
    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
    " Treat .md files as Markdown
@@ -241,7 +241,6 @@ set cindent               " c code indenting
 set diffopt=filler,iwhite " keep files synced and ignore whitespace
 set guioptions-=m         " Remove menu from the gui
 set guioptions-=T         " Remove toolbar
-set history=50            " keep 50 lines of command line history
 set linebreak             " This displays long lines as wrapped at word boundries
 set ruler                 " the ruler on the bottom is useful
 set showcmd               " Show (partial) command in status line.
