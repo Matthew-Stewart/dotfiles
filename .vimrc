@@ -144,6 +144,9 @@ map <silent> U :silent :u1<bar>u<CR>
 " copy in visual mode keeps your cursor in the same place
 vnoremap y ygv<ESC>
 
+" always paste on the next line
+nnoremap p :put<CR>
+
 " "_d is used to delete something to the blackhole register
 " (in my case, this simply means don't copy it to the clipboard)
 " nnoremap r "_d
