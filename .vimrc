@@ -118,6 +118,8 @@ augroup vimrc
    autocmd BufRead,BufWritePre,FileWritePre * silent :call StripTrailingWhiteSpace()
 augroup END
 
+autocmd FileType make setlocal noexpandtab
+
 " Highlight Class and Function names
 function! s:HighlightFunctionsAndClasses()
    syn match cCustomFunc      "\w\+\s*\((\)\@="
