@@ -33,6 +33,7 @@ alias a="vim ~/.aliases"
 alias e="vim ~/.exports"
 alias extra="vim ~/.extra"
 alias h="sudo vim /etc/hosts; dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+alias doge="dog"
 
 alias sps="python -m SimpleHTTPServer"
 alias phps="php -S localhost:8000 -t ."
