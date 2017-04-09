@@ -21,7 +21,7 @@ c() {
 
 # Colored cat with special characters printed
 function dog() {
-  gcat -t $1 | pygmentize
+  gcat -t "$@" | pygmentize
 }
 
 
