@@ -96,6 +96,24 @@ augroup FastEscape
    au InsertLeave * set timeoutlen=1000
 augroup END
 
+fun! CloseBuffer(cmd, write)
+   let numBuffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+   if numBuffers == 1
+      execute a:cmd
+   elseif a:write == 1
+      :w
+      :bd
+   else
+      :bd
+   endif
+endfunc
+
+cnoreabbrev <silent> q :call CloseBuffer("q", 0)<CR>
+cnoreabbrev <silent> wq :call CloseBuffer("wq", 1)<CR>
+cnoreabbrev <silent> x :call CloseBuffer("x", 1)<CR>
+
+nmap <silent> q :q<CR>
+
 " from https://github.com/Valloric/dotfiles/blob/master/vim/vimrc.vim
 " turns off all error bells, visual or otherwise
 set noerrorbells visualbell t_vb=
