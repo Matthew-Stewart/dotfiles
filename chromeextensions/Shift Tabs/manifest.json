@@ -1,0 +1,40 @@
+{
+  "name": "Shift Tabs",
+  "version": "1.0",
+  "description": "Allows for moving tabs to the left or right",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["tab_shortcuts.js"],
+    "persistent": false
+  },
+  "commands": {
+    "move-tab-one-left": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Left",
+        "mac": "Command+Shift+Left"
+      },
+      "description": "Moves the current tab one to the left."
+    },
+    "move-tab-one-right": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Right",
+        "mac": "Command+Shift+Right"
+      },
+      "description": "Moves the current tab one to the right."
+    },
+    "move-tab-far-left": {
+      "suggested_key": {
+        "default": "Alt+Shift+Left",
+        "mac": "Command+MacCtrl+Left"
+      },
+      "description": "Moves the current tab to the far left."
+    },
+    "move-tab-far-right": {
+      "suggested_key": {
+        "default": "Alt+Shift+Right",
+        "mac": "Command+MacCtrl+Right"
+      },
+      "description": "Moves the current tab to the far right."
+    }
+  }
+}
