@@ -61,6 +61,7 @@ set history=100
 set mouse=i
 set mouse+=a
 set hlsearch
+set colorcolumn=80
 " au VimEnter * RainbowParenthesesToggle
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
@@ -72,6 +73,10 @@ colorscheme molokai
 
 " line numbers
 set nu
+
+" turn off smart indent for conf files (#'s get floated all the way left)
+au! FileType conf setl nosmartindent
+au! FileType conf setl nocindent
 
 " autocmd BufNewFile,BufRead *.py_tmpl,*.py setlocal ft=python
 autocmd BufNewFile,BufRead *.rkt,*.rktl setlocal ft=racket
