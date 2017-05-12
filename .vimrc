@@ -39,7 +39,11 @@ let g:ycm_semantic_triggers =  {
          \ }
 
 let g:Powerline_symbols = 'fancy'
-set guifont=Inconsolata\ for\ Powerline:h15
+
+"fira code works by default in terminal.app, but ill leave these lines here
+"in case I need them in the future
+"set macligatures
+"set guifont=Fira\ Code:h17
 
 set encoding=utf-8
 set t_Co=256
