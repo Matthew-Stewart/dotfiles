@@ -5,32 +5,29 @@ filetype off
 " run :PluginInstall for first time setup
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" not sure how many of these I actually use
+
 Plugin 'gmarik/Vundle.vim'
+" git commands in vim
 Plugin 'tpope/vim-fugitive'
-Bundle 'mbadran/headlights'
+" visual directory tree
 Plugin 'scrooloose/nerdtree'
+" auto complete
 Plugin 'Valloric/YouCompleteMe'
+" javascript auto complete
 Plugin 'marijnh/tern_for_vim'
-"Plugin 'Shougo/vimproc.vim'  " installed manually
-Plugin 'Shougo/unite.vim'
+" kotlin syntax highlighting
+Plugin 'udalov/kotlin-vim'
+" php auto complete
 Plugin 'm2mdas/phpcomplete-extended'
+" lisp parenthesis coloring
 Bundle 'kien/rainbow_parentheses.vim'
+" ctrl p to open files
 Plugin 'ctrlpvim/ctrlp.vim'
+" glsl syntax highlighting
 Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()            " required
 
-let g:rbpt_colorpairs = [
-         \ [ '13', '#6c71c4'],
-         \ [ '5',  '#d33682'],
-         \ [ '1',  '#dc322f'],
-         \ [ '9',  '#cb4b16'],
-         \ [ '3',  '#b58900'],
-         \ [ '2',  '#859900'],
-         \ [ '6',  '#2aa198'],
-         \ [ '4',  '#268bd2'],
-         \ ]
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_semantic_triggers =  {
          \   'html' : ['<', '.', '#'],
@@ -53,23 +50,22 @@ set termencoding=utf-8
 
 syntax enable
 filetype plugin indent on
+set expandtab
 set tabstop=3
 set softtabstop=0
-set expandtab
 set shiftwidth=3
 set smarttab
 set pastetoggle=<F2>
 set ignorecase
 set smartcase
 set history=100
-set mouse=i
-set mouse+=a
+set mouse=a
 set hlsearch
 set colorcolumn=80
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " Sublime Monokai color scheme"
 let g:molokai_original = 1
@@ -82,8 +78,7 @@ set nu
 au! FileType conf setl nosmartindent
 au! FileType conf setl nocindent
 
-" autocmd BufNewFile,BufRead *.py_tmpl,*.py setlocal ft=python
-autocmd BufNewFile,BufRead *.rkt,*.rktl setlocal ft=racket
+autocmd BufNewFile,BufRead *.rkt,*.rktl setlocal ft=lisp
 autocmd FileType ruby colorscheme railcasts
 
 augroup MyAutoCmd
@@ -91,7 +86,6 @@ augroup MyAutoCmd
    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
    autocmd FileType ejs,jst setlocal omnifunc=htmlcomplete#CompleteTags
    autocmd FileType javascript setlocal omnifunc=tern#Complete
-   " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
    autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
@@ -117,10 +111,12 @@ fun! CloseBuffer(cmd, write)
    endif
 endfunc
 
+" map quit commands to only close current buffer
 cnoreabbrev <silent> q :call CloseBuffer("q", 0)<CR>
 cnoreabbrev <silent> wq :call CloseBuffer("wq", 1)<CR>
 cnoreabbrev <silent> x :call CloseBuffer("x", 1)<CR>
 
+" ive never legitimately used the q command, so map it to quit
 nmap <silent> q :q<CR>
 
 " from https://github.com/Valloric/dotfiles/blob/master/vim/vimrc.vim
@@ -145,6 +141,7 @@ augroup vimrc
    autocmd BufRead,BufWritePre,FileWritePre * silent :call StripTrailingWhiteSpace()
 augroup END
 
+" use tabs in make files
 autocmd FileType make setlocal noexpandtab
 
 " Highlight Class and Function names
@@ -158,7 +155,9 @@ endfunction
 
 set wildignore+=*.o,*.obj,.git,*.pyc,*.so,blaze*,READONLY,llvm,Library*
 set wildignore+=CMakeFiles,packages/*,**/packages/*,**/node_modules/*
+set wildignore+=*.class,*.swp,*/build/*,*/target/*,*/deps/*
 
+" yank copys to mac clipboard
 set clipboard+=unnamed
 
 vnoremap <C-c> "+y
@@ -176,11 +175,6 @@ vnoremap y ygv<ESC>
 " always paste on the next line
 nnoremap p :put<CR>
 
-" "_d is used to delete something to the blackhole register
-" (in my case, this simply means don't copy it to the clipboard)
-" nnoremap r "_d
-" vnoremap r "_d
-
 " for moving between buffers
 nnoremap > :bn<CR>
 nnoremap < :bp<CR>
@@ -188,17 +182,18 @@ nnoremap < :bp<CR>
 " retab entire file
 map <F3> mzgg=G<bar>:retab<CR>`z
 
-"https://www.youtube.com/watch?v=xew7CMkL7jY
+" https://www.youtube.com/watch?v=xew7CMkL7jY
 ab shb #!/usr/bin/env bash
 
+" powerline setup
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
-
-set rtp+=/Users/Stewart/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
 
 set laststatus=2
 set showtabline=2
+
 " allows switching buffers without writing the current buffer
 set hidden
 
@@ -256,7 +251,6 @@ set wildchar=<Tab>
 "set wildmode=full " :help wildmode
 "set wildmode=longest:full
 set wildmode=longest:full,full
-set wildignore+=*.class,*.swp,*/build/*,*/target/*,*.o,*/node_modules/*,*/deps/*
 
 " alt keybindings to switch between windows
 nnoremap <silent> <C-j> :wincmd j<CR>
@@ -264,6 +258,7 @@ nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
 nnoremap <silent> <C-m> :wincmd q<CR>
+
 " ycm
 nnoremap <C-i> :YcmCompleter GoTo<CR>
 
