@@ -17,6 +17,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
 " kotlin syntax highlighting
 Plugin 'udalov/kotlin-vim'
+" required for phpcomplete
+Plugin 'Shougo/vimproc.vim'
 " php auto complete
 Plugin 'm2mdas/phpcomplete-extended'
 " lisp parenthesis coloring
@@ -28,6 +30,7 @@ Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()            " required
 
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_semantic_triggers =  {
          \   'html' : ['<', '.', '#'],
@@ -79,7 +82,6 @@ au! FileType conf setl nosmartindent
 au! FileType conf setl nocindent
 
 autocmd BufNewFile,BufRead *.rkt,*.rktl setlocal ft=lisp
-autocmd FileType ruby colorscheme railcasts
 
 augroup MyAutoCmd
    autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
@@ -90,13 +92,6 @@ augroup MyAutoCmd
    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
    autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
    autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
-augroup END
-
-set ttimeoutlen=10
-augroup FastEscape
-   autocmd!
-   au InsertEnter * set timeoutlen=150
-   au InsertLeave * set timeoutlen=1000
 augroup END
 
 fun! CloseBuffer(cmd, write)
@@ -119,6 +114,21 @@ cnoreabbrev <silent> x :call CloseBuffer("x", 1)<CR>
 " ive never legitimately used the q command, so map it to quit
 nmap <silent> q :q<CR>
 
+" Clear highlighting on escape in normal mode
+" https://stackoverflow.com/a/1037182
+nnoremap <ESC> :noh<CR><ESC>
+nnoremap <ESC>^[ <ESC>^[
+set ttimeoutlen=10
+set timeoutlen=10
+
+" http://vim.wikia.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
+:nnoremap n nzz
+:nnoremap N Nzz
+:nnoremap * *zz
+:nnoremap # #zz
+:nnoremap g* g*zz
+:nnoremap g# g#zz
+
 " from https://github.com/Valloric/dotfiles/blob/master/vim/vimrc.vim
 " turns off all error bells, visual or otherwise
 set noerrorbells visualbell t_vb=
@@ -129,7 +139,7 @@ set iskeyword+=_,$,@,%,#,-
 " http://stackoverflow.com/questions/19936145
 fun! StripTrailingWhiteSpace()
    " don't strip on these filetypes
-   if &ft =~ 'markdown'
+   if &ft =~ 'markdown' || &ft =~ 'diff'
       return
    endif
    %s/\s\+$//e
