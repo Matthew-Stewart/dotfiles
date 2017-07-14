@@ -27,6 +27,8 @@ Bundle 'kien/rainbow_parentheses.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 " glsl syntax highlighting
 Plugin 'tikhomirov/vim-glsl'
+" show diff with swap files
+Plugin 'chrisbra/Recover.vim'
 
 call vundle#end()            " required
 
@@ -139,7 +141,7 @@ set iskeyword+=_,$,@,%,#,-
 " http://stackoverflow.com/questions/19936145
 fun! StripTrailingWhiteSpace()
    " don't strip on these filetypes
-   if &ft =~ 'markdown' || &ft =~ 'diff'
+   if &ft =~ 'markdown' || &ft =~ 'diff' || &ft =~ 'changelog'
       return
    endif
    %s/\s\+$//e
