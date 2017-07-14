@@ -1,6 +1,7 @@
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacGx
 export GREP_OPTIONS='--color=auto'
+export DISPLAY=":0.0"
 
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"

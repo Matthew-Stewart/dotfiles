@@ -6,7 +6,7 @@ DOWNLOADS="~/Downloads/"
 
 alias ls='/bin/ls -AFChof'
 alias ll='/bin/ls -l'
-alias lst='/bin/ls -altr'
+alias lst='/bin/ls -Altr'
 
 alias r="cd $REPOS"
 alias d="cd $DOWNLOADS"

@@ -6,6 +6,7 @@
    lag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' -n 25
    c = clean -xfd
    rh = "!git reset --hard HEAD; git clean -fd"
+   rm-all = "!git rm $(git ls-files --deleted)"
 
    # github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
    l = log --pretty=oneline -n 20 --graph --abbrev-commit
