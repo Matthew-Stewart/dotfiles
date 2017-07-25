@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # wrote this before learning about make files
 c() {
   if [[ "${1##*.}" != "c" ]]; then

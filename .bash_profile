@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # github.com/mathiasbynens/dotfiles/blob/master/.bash_profile
 
 export PATH="$HOME/bin:$PATH";

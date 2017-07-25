@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # vim complains if these directories don't exist
 mkdir $HOME/dotfiles/.vim/swaps
