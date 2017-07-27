@@ -9,6 +9,8 @@ for file in ~/.{path,bashrc,exports,aliases,functions,extra}; do
 done;
 
 
+shopt -s dotglob
+
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
 
