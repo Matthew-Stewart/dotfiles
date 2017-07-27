@@ -67,6 +67,9 @@ set history=100
 set mouse=a
 set hlsearch
 set colorcolumn=80
+set cursorline
+set ttyfast
+set lazyredraw
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -77,7 +80,7 @@ let g:molokai_original = 1
 colorscheme molokai
 
 " line numbers
-set nu
+set number
 
 " turn off smart indent for conf files (#'s get floated all the way left)
 au! FileType conf setl nosmartindent
@@ -239,11 +242,16 @@ set incsearch
 set nostartofline
 " Don’t show the intro message when starting Vim
 set shortmess=atI
+
 " Use relative line numbers
-if exists("&relativenumber")
-   set relativenumber
-   au BufReadPost * set relativenumber
-endif
+" TODO: disabling for now. see:
+" https://github.com/vim/vim/issues/1735
+" https://github.com/vim/vim/issues/282#issuecomment-164013461
+" if exists("&relativenumber")
+"    set relativenumber
+"    au BufReadPost * set relativenumber
+" endif
+
 " Start scrolling two lines before the horizontal window border
 set scrolloff=2
 
