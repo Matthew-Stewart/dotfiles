@@ -26,6 +26,10 @@ function dog() {
   gcat -t "$@" | pygmentize
 }
 
+# Alias for a command I use basically every day
+function gr() {
+  grep -Rni "$@" ./
+}
 
 # github.com/mathiasbynens/dotfiles/blob/master/.functions
 
