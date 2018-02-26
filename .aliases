@@ -4,7 +4,7 @@ D="~/Documents"
 REPOS="$D/Repositories/"
 DOWNLOADS="~/Downloads/"
 
-alias ls='/bin/ls -AFChof'
+#moved ls alias to .functions
 alias ll='/bin/ls -l'
 alias lst='/bin/ls -Altr'
 
@@ -111,7 +111,7 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 alias update='brew update; brew upgrade; brew cleanup; sudo npm install npm -g; sudo npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup; updatepip; updatepip3'
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 

@@ -2,6 +2,7 @@
 
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacGx
+export CLICOLOR_FORCE=
 export GREP_OPTIONS='--color=auto'
 export DISPLAY=":0.0"
 

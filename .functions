@@ -31,6 +31,12 @@ function gr() {
   grep -Rni "$@" ./
 }
 
+# Moved ls to a function to get sorting working
+function ls() {
+  /bin/ls -AFChof "$@" | sort -k8 -f
+}
+
+
 # github.com/mathiasbynens/dotfiles/blob/master/.functions
 
 # Create a new directory and enter it

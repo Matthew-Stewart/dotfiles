@@ -116,8 +116,9 @@ cnoreabbrev <silent> q :call CloseBuffer("q", 0)<CR>
 cnoreabbrev <silent> wq :call CloseBuffer("wq", 1)<CR>
 cnoreabbrev <silent> x :call CloseBuffer("x", 1)<CR>
 
-" ive never legitimately used the q command, so map it to quit
-nmap <silent> q :q<CR>
+" use quit much more often
+nnoremap <silent> q :call CloseBuffer("q", 0)<CR>
+nnoremap <silent> Q q
 
 " Clear highlighting on escape in normal mode
 " https://stackoverflow.com/a/1037182
