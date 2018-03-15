@@ -58,6 +58,10 @@ ignore_packages3="placeholder"
 alias updatepip="python -m pip install -U pip && pip list --outdated --format=legacy | cut -d' ' -f1 | grep -ivF \"$ignore_packages2\" | xargs pip install --upgrade"
 alias updatepip3="python3 -m pip install -U pip && pip3 list --outdated --format=legacy | cut -d' ' -f1 | grep -ivF \"$ignore_packages3\" | xargs pip3 install --upgrade"
 
+alias update='brew update; brew upgrade; brew cleanup; sudo npm install npm -g; sudo npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup; updatepip; updatepip3'
+
+# make sure cat prints a trailing newline for the last line
+alias cat="awk 1"
 
 # github.com/mathiasbynens/dotfiles/blob/master/.aliases
 
@@ -106,9 +110,6 @@ alias week='date +%V'
 
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
-
-# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='brew update; brew upgrade; brew cleanup; sudo npm install npm -g; sudo npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup; updatepip; updatepip3'
 
 # IP addresses
 alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
