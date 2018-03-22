@@ -36,3 +36,6 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# fix opening new tab in osx terminal
+osascript -e 'tell app "Terminal" to set number of rows of window 1 to 100'
