@@ -202,10 +202,10 @@ map <F3> mzgg=G<bar>:retab<CR>`z
 ab shb #!/usr/bin/env bash
 
 " powerline setup
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+set rtp+=/usr/local/lib/python3.6/site-packages/powerline/bindings/vim
 
 set laststatus=2
 set showtabline=2
