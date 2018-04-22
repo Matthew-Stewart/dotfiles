@@ -177,25 +177,25 @@ function extract {
  if [ -z "$1" ]; then
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
  else
-    for n in $@
+    for n in "$@"
     do
       if [ -f "$n" ] ; then
-          NAME=${n%.*}
-          mkdir $NAME && cd $NAME
+          NAME="${n%.*}"
+          mkdir "$NAME" && cd "$NAME"
           case "${n%,}" in
-            *.tar.bz2|*.tbz2)  tar xvjf ../$n    ;;
-            *.tar.gz|*.tgz)    tar xvzf ../$n    ;;
-            *.tar.xz|*.txz)    tar xvJf ../$n    ;;
-            *.tar)     tar xvf ../$n     ;;
-            *.lzma)    unlzma ../$n      ;;
-            *.bz2)     bunzip2 ../$n     ;;
-            *.rar)     unrar x -ad ../$n ;;
-            *.gz)      gunzip ../$n      ;;
-            *.zip)     unzip ../$n       ;;
-            *.Z)       uncompress ../$n  ;;
-            *.7z)      7z x ../$n        ;;
-            *.xz)      unxz ../$n        ;;
-            *.exe)     cabextract ../$n  ;;
+            *.tar.bz2|*.tbz2)  tar xvjf "../$n"    ;;
+            *.tar.gz|*.tgz)    tar xvzf "../$n"    ;;
+            *.tar.xz|*.txz)    tar xvJf "../$n"    ;;
+            *.tar)     tar xvf "../$n"     ;;
+            *.lzma)    unlzma "../$n"      ;;
+            *.bz2)     bunzip2 "../$n"     ;;
+            *.rar)     unrar x -ad "../$n" ;;
+            *.gz)      gunzip "../$n"      ;;
+            *.zip)     unzip "../$n"       ;;
+            *.Z)       uncompress "../$n"  ;;
+            *.7z)      7z x "../$n"        ;;
+            *.xz)      unxz "../$n"        ;;
+            *.exe)     cabextract "../$n"  ;;
             *)         echo "extract: '$n' - unknown archive method"; return 1 ;;
           esac
           cd ../
