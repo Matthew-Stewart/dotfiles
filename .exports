@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
+unset GREP_OPTIONS
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacGx
 export CLICOLOR_FORCE=
-export GREP_OPTIONS='--color=auto'
-export DISPLAY=":0.0"
+export DISPLAY=":50.0"
 
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
+
+export GITCOMPLETION=~/.bash/git-completion
+if [ -f "${GITCOMPLETION}/git-completion.bash" ]; then
+   source "${GITCOMPLETION}/git-completion.bash"
+   __git_complete g __git_main
+fi
 
 export PS1="\[\e[0;91m\]\u\[\e[m\] \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \[\e[0;92m\]"
 

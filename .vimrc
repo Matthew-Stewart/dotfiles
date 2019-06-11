@@ -294,3 +294,7 @@ set ruler                 " the ruler on the bottom is useful
 set showcmd               " Show (partial) command in status line.
 set showmatch             " Show matching brackets.
 set virtualedit=block     " let blocks be in virutal edit mode
+
+
+set title
+set titleold=

@@ -33,7 +33,7 @@ function gr() {
 
 # Moved ls to a function to get sorting working
 function ls() {
-  /bin/ls -AFChof "$@" | sort -k8 -f
+  /bin/ls -AFCho "$@" | sort -k8 -f
 }
 
 
