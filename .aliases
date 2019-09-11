@@ -5,8 +5,8 @@ REPOS="$D/Repositories/"
 DOWNLOADS="~/Downloads/"
 
 #moved ls alias to .functions
-alias ll='/bin/ls -l'
-alias lst='/bin/ls -Altr'
+alias ll='/bin/ls -la'
+alias lst='/bin/ls -AFltr'
 
 alias r="cd $REPOS"
 alias d="cd $DOWNLOADS"
@@ -22,6 +22,7 @@ alias e="vim ~/.exports"
 alias extra="vim ~/.extra"
 alias h="sudo vim /etc/hosts; dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias doge="dog"
+alias treee='find . | sed -e "s/[^-][^\/]*\//  │/g" -e "s/│\([^ ]\)/├ \1/"'
 
 alias sps="python -m SimpleHTTPServer"
 alias phps="php -S localhost:8000 -t ."

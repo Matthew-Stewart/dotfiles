@@ -52,12 +52,12 @@ if echo "$yn" | grep -iq "^y"; then
 
    # install ycm
    cd "$HOME/.vim/bundle/YouCompleteMe"
-   if ! hash brew 2>/dev/null; then
-      echo "Homebrew not found. Skipping YCM install."
-      echo "Follow directions at https://github.com/Valloric/YouCompleteMe#mac-os-x"
-      skip=true
+   if ! hash apt 2>/dev/null; then
+      sudo apt install build-essential cmake python3-dev -y
    else
-      brew install cmake
+      echo "Apt not found. Skipping YCM install."
+      echo "Follow directions at https://github.com/Valloric/YouCompleteMe#installation"
+      skip=true
    fi
 
    if [ "$skip" != true ]; then

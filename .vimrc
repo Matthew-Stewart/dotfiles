@@ -29,11 +29,16 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tikhomirov/vim-glsl'
 " show diff with swap files
 Plugin 'chrisbra/Recover.vim'
+" show git diff
+Plugin 'airblade/vim-gitgutter'
+" smooth scrolling
+" Plugin 'yuttie/comfortable-motion.vim'
 
 call vundle#end()            " required
 
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_semantic_triggers =  {
          \   'html' : ['<', '.', '#'],
          \   'lisp,clojure,clj,racket,rkt' : ['('],
@@ -41,6 +46,7 @@ let g:ycm_semantic_triggers =  {
          \ }
 
 let g:Powerline_symbols = 'fancy'
+let g:gitgutter_sign_column_always = 1
 
 "fira code works by default in terminal.app, but ill leave these lines here
 "in case I need them in the future
@@ -56,9 +62,9 @@ set termencoding=utf-8
 syntax enable
 filetype plugin indent on
 set expandtab
-set tabstop=3
+set tabstop=4
 set softtabstop=0
-set shiftwidth=3
+set shiftwidth=4
 set smarttab
 set pastetoggle=<F2>
 set ignorecase
@@ -81,6 +87,11 @@ colorscheme molokai
 
 " line numbers
 set number
+
+" fix for powerline warning: https://github.com/vim/vim/issues/3117#issuecomment-402622616
+if has('python3')
+  silent! python3 1
+endif
 
 " turn off smart indent for conf files (#'s get floated all the way left)
 au! FileType conf setl nosmartindent
@@ -142,13 +153,40 @@ set noerrorbells visualbell t_vb=
 " none of these should be word dividers, so make them not be
 set iskeyword+=_,$,@,%,#,-
 
+" https://docwhat.org/vim-preserve-your-cursor-and-window-state
+" A wrapper function to restore the cursor position, window position,
+" and last search after running a command.
+function! Preserve(command)
+   " Save the last search
+   let last_search=@/
+   " Save the current cursor position
+   let save_cursor = getpos(".")
+   " Save the window position
+   normal H
+   let save_window = getpos(".")
+   call setpos('.', save_cursor)
+
+   " Do the business:
+   execute a:command
+
+   " Restore the last_search
+   call histdel('/', -1)
+   let @/=last_search
+   " Restore the window position
+   call setpos('.', save_window)
+   normal zt
+   " Restore the cursor position
+   call setpos('.', save_cursor)
+
+endfunction
+
 " http://stackoverflow.com/questions/19936145
 fun! StripTrailingWhiteSpace()
    " don't strip on these filetypes
    if &ft =~ 'markdown' || &ft =~ 'diff' || &ft =~ 'changelog'
       return
    endif
-   %s/\s\+$//e
+   call Preserve("%s/\\s\\+$//e")
 endfun
 
 augroup vimrc
@@ -202,10 +240,10 @@ map <F3> mzgg=G<bar>:retab<CR>`z
 ab shb #!/usr/bin/env bash
 
 " powerline setup
+let g:powerline_pycmd = 'py3'
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
-set rtp+=/usr/local/lib/python3.6/site-packages/powerline/bindings/vim
 
 set laststatus=2
 set showtabline=2
@@ -253,6 +291,10 @@ set shortmess=atI
 "    au BufReadPost * set relativenumber
 " endif
 
+if has("autocmd")
+     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+
 " Start scrolling two lines before the horizontal window border
 set scrolloff=2
 
@@ -295,6 +337,7 @@ set showcmd               " Show (partial) command in status line.
 set showmatch             " Show matching brackets.
 set virtualedit=block     " let blocks be in virutal edit mode
 
-
 set title
 set titleold=
+
+set updatetime=200

@@ -28,12 +28,14 @@ function dog() {
 
 # Alias for a command I use basically every day
 function gr() {
-  grep -Rni "$@" ./
+  #grep --binary-files=text -Rnis "$@" ./
+  grep -Rnis "$@" ./
 }
 
 # Moved ls to a function to get sorting working
 function ls() {
-  /bin/ls -AFCho "$@" | sort -k8 -f
+  # /bin/ls -AFCho "$@" | sort -k8 -f
+  /bin/ls -AFCho "$@" --color=always
 }
 
 
@@ -181,6 +183,9 @@ function extract {
     do
       if [ -f "$n" ] ; then
           NAME="${n%.*}"
+          case "${n%,}" in
+            *.tar.bz2|*.tar.gz|*.tar.xz)  NAME="${NAME%.*}"   ;;
+          esac
           mkdir "$NAME" && cd "$NAME"
           case "${n%,}" in
             *.tar.bz2|*.tbz2)  tar xvjf "../$n"    ;;

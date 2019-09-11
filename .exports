@@ -4,7 +4,7 @@ unset GREP_OPTIONS
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacGx
 export CLICOLOR_FORCE=
-export DISPLAY=":50.0"
+# export DISPLAY=":50.0"
 
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
@@ -15,7 +15,10 @@ if [ -f "${GITCOMPLETION}/git-completion.bash" ]; then
    __git_complete g __git_main
 fi
 
-export PS1="\[\e[0;91m\]\u\[\e[m\] \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \[\e[0;92m\]"
+# with user
+# export PS1="\[\e[0;91m\]\u\[\e[m\] \@ \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \[\e[0;92m\]"
+# export PS1="\[\e[1;31m\]\D{%I:%M}\[\e[m\]  \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \[\e[0;96m\]"
+export PS1="\[\e[1;31m\]\D{%I:%M}\[\e[m\]  \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
 
 # http://stackoverflow.com/questions/9457233/unlimited-bash-history
 export HISTFILESIZE=
