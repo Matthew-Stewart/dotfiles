@@ -4,14 +4,15 @@
    autocrlf = input
 [alias]
    undo-commit = reset --soft HEAD^
-   lag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' -n 10
+   lag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' -n 15
    c = clean -fd
    rh = "!git reset --hard HEAD; git clean -fd"
    rm-all = "!git rm $(git ls-files --deleted)"
+   lognum = "!git log --pretty=format:'%h : %s' --graph | nl | less"
 
    # github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
    l = log --pretty=oneline -n 20 --graph --abbrev-commit
-   s = status -s
+   s = status -s -b
    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
    p = !"git pull; git submodule foreach git pull origin master"

@@ -1,25 +1,5 @@
 #!/usr/bin/env bash
 
-# wrote this before learning about make files
-c() {
-  if [[ "${1##*.}" != "c" ]]; then
-    return;
-  fi
-  filename=$(basename "$1" .c);
-  gcc -ansi -Wall -pedantic "$1" -o "$filename";
-  output=`gcc -ansi -Wall -pedantic "$1" -o "$filename" 2>&1`;
-  if [[ $output != *"Error"* && $output != *"error"* ]]; then
-    cmd="./$filename";
-    if [ "$#" -ge 2 ]; then
-      for i in ${@:2} ; do
-        echo "$i";
-        cmd="$cmd $i";
-      done
-    fi
-    echo "executing $cmd" ; echo ""
-    eval $cmd ; echo ""
-  fi
-}
 
 # Colored cat with special characters printed
 function dog() {
@@ -29,7 +9,7 @@ function dog() {
 # Alias for a command I use basically every day
 function gr() {
   #grep --binary-files=text -Rnis "$@" ./
-  grep -Rnis "$@" ./
+  grep -RnisI --color=always "$@" ./
 }
 
 # Moved ls to a function to get sorting working

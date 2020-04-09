@@ -14,8 +14,8 @@ done;
 
 shopt -s dotglob
 
-bind "set completion-ignore-case on"
-bind "set show-all-if-ambiguous on"
+# bind "set completion-ignore-case on"
+# bind "set show-all-if-ambiguous on"
 
 # Add tab completion for many Bash commands
 if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
@@ -40,4 +40,10 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-# source ~/.bash_profile
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+   if [[ $- =~ "i" ]] ; then
+      eval `ssh-agent -s`
+      ssh-add ~/.ssh/id_rsa
+   fi
+fi
+

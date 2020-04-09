@@ -6,8 +6,8 @@ export LSCOLORS=gxfxcxdxbxegedabagacGx
 export CLICOLOR_FORCE=
 # export DISPLAY=":50.0"
 
-export GITAWAREPROMPT=~/.bash/git-aware-prompt
-source "${GITAWAREPROMPT}/main.sh"
+# export GITAWAREPROMPT=~/.bash/git-aware-prompt
+# source "${GITAWAREPROMPT}/main.sh"
 
 export GITCOMPLETION=~/.bash/git-completion
 if [ -f "${GITCOMPLETION}/git-completion.bash" ]; then
@@ -18,12 +18,20 @@ fi
 # with user
 # export PS1="\[\e[0;91m\]\u\[\e[m\] \@ \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \[\e[0;92m\]"
 # export PS1="\[\e[1;31m\]\D{%I:%M}\[\e[m\]  \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \[\e[0;96m\]"
-export PS1="\[\e[1;31m\]\D{%I:%M}\[\e[m\]  \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
+# export PS1="\[\e[1;31m\]\D{%I:%M}\[\e[m\]  \[\e[1;94m\]\w\[\e[m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
 
 # http://stackoverflow.com/questions/9457233/unlimited-bash-history
-export HISTFILESIZE=
-export HISTSIZE=
+export HISTFILESIZE=100000
+export HISTSIZE=5000
 export HISTTIMEFORMAT="[%F %T] "
+export HISTCONTROL=ignoredups
 export HISTFILE=~/.bash_history_improved
+
+shopt -s histappend
 # Force prompt to write history after every command.
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# export PROMPT_COMMAND='history -a; history -n; __git_ps1 "[\e[1;31m]\D{%I:%M}[\e[m]  [\e[1;94m]\w[\e[m] [$txtcyn]" "[$txtred]$git_dirty[$txtrst] "'
+
+source ~/git-prompt.sh
+
+export GIT_PS1_SHOWDIRTYSTATE='help me'
+export PROMPT_COMMAND='history -a; history -c; history -r; __git_ps1 "\n\e[1;31m\A  \e[1;94m\w\e[0;36m" "\e[33m\e[m\n$ "'
